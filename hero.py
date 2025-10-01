@@ -36,6 +36,28 @@ class Hero(Character): # (Character) とすることで継承を指定
         print(f"[{self.name}] は {target.name} を {heal_amount} 回復した！ (残りMP: {self.mp})")
         print(target)
 
+    def act(self, target):
+        """Hero独自の行動：ユーザー入力を受け付け、行動を選択させる"""
+        if not self.is_alive():
+            return
+            
+        print("\n--- プレイヤーのターン ---")
+        print(f"[{self.name}] の行動を選択してください:")
+        
+        # ユーザーに選択肢を提示
+        while True:
+            # 入力は常に文字列として取得される
+            choice = input(" [1: 攻撃], [2: 回復 (MP10消費)] > ")
+            
+            if choice == '1':
+                self.attack(target) # Characterから継承したメソッド
+                break
+            elif choice == '2':
+                self.heal(self) # Hero独自のメソッド
+                break
+            else:
+                print("無効な入力です。1か2を入力してください。")
+
     def __str__(self) -> str:
         """親クラスの __str__ を上書き（オーバーライド）し、MP情報も表示する"""
         # 親クラスのステータス情報と、独自のMP情報を結合して返す

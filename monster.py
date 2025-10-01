@@ -19,3 +19,11 @@ class Monster(Character):
             
         print(f"[{self.name}] は雄叫びを上げながら攻撃してきた！")
         target.take_damage(self.attack_power)
+
+    def act(self, target):
+        """Monster独自の行動：単純な攻撃"""
+        if not self.is_alive():
+            return
+
+        print("\n--- モンスターのターン ---")
+        self.attack(target) # Monster独自のattack（メッセージ付き）を呼び出す
