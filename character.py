@@ -45,6 +45,9 @@ class Character:
         # ターゲットの take_damage メソッドを呼び出す
         target.take_damage(self.attack_power)
 
+    def act(self, target):
+        """キャラクターの基本的な行動（攻撃）"""
+        self.attack(target)
 
 # 実行テスト (character.py の if __name__ == "__main__": ブロックを以下に置き換え)
 if __name__ == "__main__":
